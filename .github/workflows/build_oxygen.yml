@@ -40,8 +40,13 @@ jobs:
           cd doxygen
           cmake -DLLVM_ENABLE_DOXYGEN=On ../llvm
           make doxygen-llvm -j
+#       - name: Copy Html
+#         run: mkdir -p ../_site
+#           cp -r docs/doxygen/html ../_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+        with:
+          path: doxygen/docs/doxygen/html 
 
   # Deployment job
   deploy:
