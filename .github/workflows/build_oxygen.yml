@@ -43,10 +43,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v2
         
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+      - if: ${{ steps.cache-oxygen.outputs.cache-hit != 'true' }}
         name: Install Dependencies
         run: sudo apt install -y doxygen graphviz
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+      - if: ${{ steps.cache-oxygen.outputs.cache-hit != 'true' }}
         name: Build Doxygen
         run: |
           mkdir -p doxygen
