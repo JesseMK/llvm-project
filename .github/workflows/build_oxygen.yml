@@ -28,13 +28,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Cache Oxygen
+        id: cache-oxygen
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-llvm-doxygen
+        with:
+          path: doxygen
+          key: llvm-doxygen
+
       - name: Checkout
         uses: actions/checkout@v3
+        
       - name: Setup Pages
         uses: actions/configure-pages@v2
-      - name: Install Dependencies
+        
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: Install Dependencies
         run: sudo apt install -y doxygen graphviz
-      - name: Build Doxygen
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: Build Doxygen
         run: |
           mkdir -p doxygen
           cd doxygen
