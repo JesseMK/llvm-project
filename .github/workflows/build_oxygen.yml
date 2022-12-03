@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install Dependencies
-        run: apt install gcc g++ cmake make doxygen
+        run: sudo apt install -y gcc g++ cmake make doxygen
 
       # Runs a set of commands using the runners shell
       - name: Build Doxygen
