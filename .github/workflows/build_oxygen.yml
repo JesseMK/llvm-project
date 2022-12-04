@@ -37,7 +37,8 @@ jobs:
           path: doxygen
           key: llvm-doxygen
 
-      - name: Checkout
+      - if: ${{ steps.cache-oxygen.outputs.cache-hit != 'true' }}
+        name: Checkout
         uses: actions/checkout@v3
         
       - name: Setup Pages
